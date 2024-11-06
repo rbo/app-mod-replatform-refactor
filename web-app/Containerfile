@@ -1,0 +1,14 @@
+FROM registry.access.redhat.com/ubi9/python-312
+
+WORKDIR /webapp
+
+COPY ./requirements.txt /webapp/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /webapp/requirements.txt
+
+COPY ./app /webapp/app/
+
+ENV PORT 3000
+EXPOSE 3000
+
+CMD ["python", "app/main.py"]

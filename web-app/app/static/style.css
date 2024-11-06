@@ -34,14 +34,6 @@ body {
     color: #333;
   }
   
-  form div {
-    margin-bottom: 10px;
-  }
-  
-  input {
-    padding: 5px;
-  }
-  
   .flash {
     padding: 10px;
     margin-bottom: 10px;
