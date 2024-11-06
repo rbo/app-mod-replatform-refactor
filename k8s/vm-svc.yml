@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vm-app 
+  namespace: vm-apps
+spec:
+  internalTrafficPolicy: Cluster 
+  ports:
+  - name: http 
+    port: 8080
+    protocol: TCP
+    targetPort: 8080 
+  selector:
+    vm.kubevirt.io/name: vm-app
+  type:
+    ClusterIP
