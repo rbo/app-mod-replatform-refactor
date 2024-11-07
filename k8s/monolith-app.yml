@@ -1,13 +1,12 @@
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
-  name: vm-app
+  name: monolith-app
   annotations:
     description: VM app
   labels:
-    app: vm-app
+    app: monolith-app
     os.template.kubevirt.io/fedora: "true"
-  namespace: vm-apps
 spec:
   running: true
   template:
@@ -17,9 +16,9 @@ spec:
         vm.kubevirt.io/os: fedora
         vm.kubevirt.io/workload: server
       labels:
-        kubevirt.io/domain: vm-app
+        kubevirt.io/domain: monolith-app
         kubevirt.io/size: small
-        vm.kubevirt.io/name: vm-app
+        vm.kubevirt.io/name: monolith-app
     spec:
       domain:
         cpu:
@@ -51,7 +50,7 @@ spec:
           type: q35
         memory:
           guest: 2Gi
-      hostname: vm-app
+      hostname: monolith-app
       networks:
         - name: default
           pod: {}
@@ -76,3 +75,18 @@ spec:
                 - export PORT=8080
                 - sh /home/user1/app/monolith-app/start-on-vm.sh
           name: cloudinitdisk
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: monolith-app
+spec:
+  internalTrafficPolicy: Cluster
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    vm.kubevirt.io/name: monolith-app
+  type: ClusterIP

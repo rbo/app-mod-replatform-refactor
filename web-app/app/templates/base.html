@@ -1,28 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ title }} - Services app</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="static/pico.min.css">
+        <title>{{ title }} - My web app</title>
     </head>
     <body>
-        <nav>
-            <ul>
-                <li>
-                    <a href="{{ url_for('index') }}">Dashboard</a>
-                </li>
-                <li>
-                    <a href="{{ url_for('service_a') }}">Service A</a>
-                </li>
-                <li>
-                    <a href="{{ url_for('service_b') }}">Service B</a>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="container">
+        <header class="container-fluid">
+            <nav style="border-bottom: 1px solid #999;">
+                <ul>
+                    <li>
+                        <strong>My web app</strong>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="{{ url_for('index') }}" class="{% if active=='home' %}contrast{%endif %}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('service_a') }}" class="{% if active=='service-a' %}contrast{%endif %}">Service A</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('service_b') }}" class="{% if active=='service-b' %}contrast{%endif %}">Service B</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main class="container-fluid">
             {% block content %}{% endblock %}
-        </div>
+        </main>
     </body>
 </html>
