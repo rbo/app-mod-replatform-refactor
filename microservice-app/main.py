@@ -1,24 +1,20 @@
-from bottle import route, run
+import os
+from fastapi import FastAPI
+
+port = int(os.environ.get("PORT", default=8080))
+app = FastAPI()
 
 
-@route('/')
-def index():
-    return {"message": "Hello world"}
+@app.get("/service-b")
+async def service_b():
+    return {"message": "Hello from NEW service b"}
 
 
-@route("/service-b")
-def service_b():
-    return {"message": "Hello from new Service b"}
+@app.get("/health")
+async def health():
+    return {"status": "UP"}
 
 
-@route("/health/readiness")
-def readiness():
-    return {"message": "Ready"}
-
-
-@route("/health/liveness")
-def liveness():
-    return {"message": "Ready"}
-
-
-run(host='0.0.0.0', port=8080)
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=port, proxy_headers=True, server_header=False, access_log=False)
