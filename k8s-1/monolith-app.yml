@@ -3,7 +3,7 @@ kind: VirtualMachine
 metadata:
   name: monolith-app
   annotations:
-    description: VM app
+    description: Monolith app
   labels:
     app: monolith-app
     os.template.kubevirt.io/fedora: "true"
