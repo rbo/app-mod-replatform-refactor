@@ -1,0 +1,39 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: monolith-app
+spec:
+  host: monolith-app
+  subsets:
+    - name: version-v1
+      labels:
+        version: v1
+    - name: version-v2
+      labels:
+        version: v2
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: monolith-app
+spec:
+  hosts:
+    - monolith-app
+  http:
+    - match:
+        - uri:
+            prefix: /service-b
+            ignoreUriCase: true
+      route:
+        - destination:
+            host: monolith-app
+            subset: version-v1
+          weight: 20
+        - destination:
+            host: monolith-app
+            subset: version-v2
+          weight: 80
+    - route:
+        - destination:
+            host: monolith-app
+            subset: version-v1
