@@ -25,8 +25,13 @@ pip install -r requirements.txt
 
 In app folder:
 
-#### Monolith
-`fastapi run app/main.py`
-
-#### Microservice
+#### Monolith and Microservice
 `python main.py`
+
+#### Webapp
+
+For development:
+`FLASK_APP=app/main.py flask run -p 3000`
+
+For producution:
+`gunicorn -w 1 -b 0.0.0.0:3000 'app.main:app'`

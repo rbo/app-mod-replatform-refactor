@@ -17,11 +17,11 @@ Namespace: openshift-operators
 
 Then:
 
-* Create "istio-system" namespace and then insdie the ServiceMeshControlPlane (kubernetes/controlplane.yml)
+* Create "istio-system" namespace and then insdie the ServiceMeshControlPlane (k8s-infra/controlplane.yml)
     ```sh
     oc apply -f k8s/infra/controlplane.yml
     ```
-* When the control plane is up and running, create the ServiceMeshMemberRoll (kubernetes/memberroll.yml) inside "istio-system" for your apps namespace
+* When the control plane is up and running, create the ServiceMeshMemberRoll (k8s-infra/memberroll.yml) inside "istio-system" for your apps namespace
     ```sh
     oc apply -f k8s/infra/memberroll.yml
     ```
