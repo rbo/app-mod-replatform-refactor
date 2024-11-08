@@ -7,8 +7,9 @@ COPY ./requirements.txt /webapp/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /webapp/requirements.txt
 
 COPY ./app /webapp/app/
+COPY ./gunicorn_conf.py /webapp/gunicorn_conf.py
 
 ENV PORT 3000
 EXPOSE 3000
 
-CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:3000", "--worker-class", "gthread", "--worker-tmp-dir", "/dev/shm", "--log-file", "-", "app.main:app"]
+ENTRYPOINT ["gunicorn", "--config", "gunicorn_conf.py", "app.main:app"]
