@@ -24,12 +24,7 @@ async def index(request: Request):
 
 @app.get("/service-a", response_class=HTMLResponse)
 async def service_a(request: Request):
-    try:
-        response = requests.get(f'http://{backend_host}:{backend_port}/service-a', timeout=backend_timeout)
-        json_response = response.json()
-    except Exception as e:
-        print("An error occurred:", e)
-        json_response = {"message": "Request error"}
+    json_response = call_backend("service-a")
 
     return templates.TemplateResponse(
         request=request, name="service-a.html", context={"active": "service-a", "data": json_response}
@@ -38,12 +33,7 @@ async def service_a(request: Request):
 
 @app.get("/service-b", response_class=HTMLResponse)
 async def service_b(request: Request):
-    try:
-        response = requests.get(f'http://{backend_host}:{backend_port}/service-a', timeout=backend_timeout)
-        json_response = response.json()
-    except Exception as e:
-        print("An error occurred:", e)
-        json_response = {"message": "Request error"}
+    json_response = call_backend("service-b")
 
     return templates.TemplateResponse(
         request=request, name="service-b.html", context={"active": "service-b", "data": json_response}
@@ -53,6 +43,15 @@ async def service_b(request: Request):
 @app.get("/health")
 async def health():
     return {"status": "UP"}
+
+
+def call_backend(path: str):
+    try:
+        response = requests.get(f'http://{backend_host}:{backend_port}/{path}', timeout=backend_timeout)
+        return response.json()
+    except Exception as e:
+        print("An error occurred:", e)
+        return {"message": "Request error"}
 
 
 if __name__ == "__main__":
