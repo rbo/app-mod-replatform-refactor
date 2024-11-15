@@ -34,4 +34,4 @@ For development:
 `FLASK_APP=app/main.py flask run -p 3000`
 
 For producution:
-`gunicorn -w 1 -b 0.0.0.0:3000 'app.main:app'`
+`gunicorn --config gunicorn.conf.py app.main:app`

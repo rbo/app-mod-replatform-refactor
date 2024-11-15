@@ -1,15 +1,16 @@
-FROM registry.access.redhat.com/ubi9/python-312
+FROM --platform=linux/amd64 registry.access.redhat.com/ubi9/python-312
 
-WORKDIR /webapp
+WORKDIR /app
 
-COPY ./requirements.txt /webapp/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
 
-RUN pip install --no-cache-dir --upgrade -r /webapp/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-COPY ./app /webapp/app/
-COPY ./gunicorn.conf.py /webapp/gunicorn.conf.py
+COPY ./main.py /app/main.py
+COPY ./static /app/static
+COPY ./templates /app/templates
 
 ENV PORT 3000
 EXPOSE 3000
 
-ENTRYPOINT ["gunicorn", "--config", "gunicorn.conf.py", "app.main:app"]
+CMD ["python", "main.py"]
