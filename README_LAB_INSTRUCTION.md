@@ -3,9 +3,7 @@
 ## Login
 > **_NOTE:_** It's good to have `oc` command line tool pre-installed.
 
-Participants can use the [workshop link](https://catalog.demo.redhat.com/workshop/nek9j5) for the user registration on OpenShift.
-
-Once users received login information for OpenShift cluster, go ahead and login to OpenShift cluster either via web console or via terminal
+Use an OpenShift cluster with OpenShift Virtualization capabilities. See README_INFRA_PREPARE.md how to setup the environment for Service Mesh and user projects.
 
 ## 1. Monolith application deployment
 
