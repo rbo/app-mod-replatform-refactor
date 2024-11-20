@@ -3,7 +3,7 @@
 ## Login
 > **_NOTE:_** It's good to have `oc` command line tool pre-installed.
 
-Use an OpenShift cluster with OpenShift Virtualization capabilities. See README_INFRA_PREPARE.md how to setup the environment for Service Mesh and user projects.
+Use an OpenShift cluster with OpenShift Virtualization capabilities. See [README_INFRA_PREPARE.md] how to setup the environment for Service Mesh and user projects.
 
 ## 1. Monolith application deployment
 
