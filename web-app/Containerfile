@@ -1,14 +1,16 @@
-FROM --platform=linux/amd64 python:3.12
+FROM --platform=linux/amd64 registry.access.redhat.com/ubi9/python-312
 
-WORKDIR /code
+WORKDIR /app
 
-COPY ./requirements.txt /code/requirements.txt
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+ADD requirements.txt /app/requirements.txt
 
-COPY ./static /code/static
-COPY ./templates /code/templates
-COPY ./main.py /code/main.py
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
+ADD static /app/static
+ADD templates /app/templates
+ADD main.py /app/main.py
+
+ENV PORT 3000
 EXPOSE 3000
 
-CMD ["fastapi", "run", "main.py", "--port", "3000"]
+CMD ["python", "main.py"]
