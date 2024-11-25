@@ -3,7 +3,7 @@
 ## Login
 > **_NOTE:_** It's good to have `oc` command line tool pre-installed.
 
-Once users received login information for OpenShift cluster, go ahead and login to OpenShift cluster either via web console or via terminal
+Use an OpenShift cluster with OpenShift Virtualization capabilities. See [README_INFRA_PREPARE.md](https://github.com/nikolaus-lemberski/summit-2024-app-mod-lab-simple/blob/main/README_INFRA_PREPARE.md) how to setup the environment for Service Mesh and user projects.
 
 ## 1. Monolith application deployment
 
