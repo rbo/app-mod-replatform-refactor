@@ -15,8 +15,8 @@ spec:
         app: web-app
     spec:
       containers:
-        - image: quay.io/nlembers/summit-2024-web-app:latest
-          name: summit-2024-web-app
+        - image: quay.io/nlembers/app-mod-web-app:latest
+          name: app-mod-web-app
           imagePullPolicy: IfNotPresent
           env:
             - name: BACKEND_HOST

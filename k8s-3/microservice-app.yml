@@ -19,8 +19,8 @@ spec:
         sidecar.istio.io/inject: "true"
     spec:
       containers:
-        - image: quay.io/nlembers/summit-2024-microservice-app:latest
-          name: summit-2024-microservice-app
+        - image: quay.io/nlembers/app-mod-microservice-app:latest
+          name: app-mod-microservice-app
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

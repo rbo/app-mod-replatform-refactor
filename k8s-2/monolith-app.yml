@@ -71,7 +71,7 @@ spec:
                 - git
               runcmd:
                 - mkdir /home/user1
-                - git clone https://github.com/nikolaus-lemberski/summit-2024-app-mod-lab-simple.git /home/user1/app/
+                - git clone https://github.com/nikolaus-lemberski/app-mod-replatform-refactor.git /home/user1/app/
                 - chown -R user1:user1 /home/user1/app/monolith-app
                 - cd /home/user1/app/monolith-app
                 - export PORT=8080
