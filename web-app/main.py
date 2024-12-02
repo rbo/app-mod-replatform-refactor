@@ -1,6 +1,6 @@
 import os
-import requests
 import logging
+import httpx
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -48,10 +48,11 @@ async def health():
 
 async def call_backend(path: str):
     try:
-        response = requests.get(f'http://{backend_host}:{backend_port}/{path}')
-        json_response = response.json()
-        LOG.info(f"Response from {backend_host}:{backend_port}/{path}: {json_response}")
-        return json_response
+        async with httpx.AsyncClient() as client:
+            response = await client.get(f'http://{backend_host}:{backend_port}/{path}')
+            response.raise_for_status()
+            json_response = response.json()
+            return json_response
     except Exception as e:
         LOG.error(f"Error response from {backend_host}:{backend_port}/{path}: {e}")
         return {"message": "Request error"}
