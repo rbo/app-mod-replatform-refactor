@@ -17,7 +17,7 @@ spec:
       containers:
         - image: quay.io/nlembers/app-mod-web-app:latest
           name: app-mod-web-app
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: BACKEND_HOST
               value: "monolith-app"
@@ -34,18 +34,6 @@ spec:
               drop: ["ALL"]
             seccompProfile:
               type: RuntimeDefault
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 3000
-            initialDelaySeconds: 1
-            periodSeconds: 1
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 3000
-            initialDelaySeconds: 5
-            periodSeconds: 15
 ---
 apiVersion: v1
 kind: Service

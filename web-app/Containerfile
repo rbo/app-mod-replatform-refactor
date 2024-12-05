@@ -1,16 +1,43 @@
-FROM --platform=linux/amd64 registry.access.redhat.com/ubi9/python-312
+FROM --platform=linux/amd64 node:18-alpine AS base
+
+# deps
+FROM --platform=linux/amd64 base AS deps
 
 WORKDIR /app
 
-ADD requirements.txt /app/requirements.txt
+COPY package.json package-lock.json* ./
 
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+RUN chgrp -R 0 /app && chmod -R g=u /app
+RUN npm ci
 
-ADD static /app/static
-ADD templates /app/templates
-ADD main.py /app/main.py
+# builder
+FROM --platform=linux/amd64 base AS builder
 
-ENV PORT 3000
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN chgrp -R 0 /app && chmod -R g=u /app
+RUN npm run build
+
+# runner
+FROM --platform=linux/amd64 base AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
 EXPOSE 3000
 
-CMD ["python", "main.py"]
+ENV PORT=3000
+
+ENV HOSTNAME="0.0.0.0"
+CMD ["node", "server.js"]
