@@ -15,7 +15,7 @@ public class ServiceResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Map<String, String> hello() {
-        return singletonMap("messsage", "Hello from NEW service b");
+        return singletonMap("message", "Hello from NEW service b");
     }
 
 }

@@ -36,3 +36,15 @@ spec:
               drop: ["ALL"]
             seccompProfile:
               type: RuntimeDefault
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 1
+            periodSeconds: 1
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 15
