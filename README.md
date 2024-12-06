@@ -31,7 +31,4 @@ In app folder:
 #### Webapp
 
 For development:
-`FLASK_APP=app/main.py flask run -p 3000`
-
-For producution:
-`gunicorn --config gunicorn.conf.py app.main:app`
+`npm run dev`
