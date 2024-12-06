@@ -2,6 +2,10 @@
 
 Monolith with endpoints /service-a and /service-b which should be modernized. Strangler pattern is applied and a new microservice created for service-b. Then Service Mesh is used for a Canary Release.
 
+This is what we want to achieve:
+
+![App modernization with OpenShift Virt, Container Platform and Service Mesh](assets/app_mod.png)
+
 ## Develop
 
 Run in app folder:
