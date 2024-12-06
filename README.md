@@ -25,10 +25,13 @@ pip install -r requirements.txt
 
 In app folder:
 
-#### Monolith and Microservice
+#### Monolith
 `python main.py`
 
 #### Webapp
 
-For development:
 `npm run dev`
+
+#### Microservice
+
+`quarkus dev`
