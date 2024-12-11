@@ -55,9 +55,10 @@ metadata:
   name: web-app
 spec:
   ports:
-  - port: 3000
-    protocol: TCP
-    targetPort: 3000
+    - name: http
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
   selector:
     app: web-app
   sessionAffinity: None
@@ -78,5 +79,3 @@ spec:
   to:
     kind: Service
     name: web-app
-    weight: 100
-  wildcardPolicy: None
