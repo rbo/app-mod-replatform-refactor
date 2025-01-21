@@ -17,6 +17,10 @@ You'll find instructions how to setup the infrastructure and how to run the lab 
 
 ## Develop
 
+You don't need these steps if you just want to follow the lab. If you want to make changes to the apps or run it locally, continue.
+
+### Monolith
+
 Run in app folder:
 
 ```bash
@@ -24,27 +28,18 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-In VSCode: Cmd-Shift-P > Select Python Interpreter > Enter Interpreter Path -> APPFOLDER/.venv/
-
-### Install dependencies
-
-Run in app folder:
-
 ```bash
 pip install -r requirements.txt
 ```
 
-### Run app
+In VSCode: Cmd-Shift-P > Select Python Interpreter > Enter Interpreter Path -> APPFOLDER/.venv/
 
-In app folder:
-
-#### Monolith
 `python main.py`
 
-#### Webapp
+### Webapp
 
 `npm run dev`
 
-#### Microservice
+### Microservice
 
 `quarkus dev`
