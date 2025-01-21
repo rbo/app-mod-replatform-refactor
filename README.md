@@ -1,10 +1,12 @@
-# Monolith and microservice example
+# App modernization with OpenShift Virtualization and Service Mesh
 
-Monolith with endpoints /service-a and /service-b which should be modernized. Strangler pattern is applied and a new microservice created for service-b. Then Service Mesh is used for a Canary Release.
+In this lab we modernize a monolithic application. First we move the monolith to OpenShift Virtualization, then we apply the **Strangler pattner** and move one bounded context into a microservice. We install and configure Service Mesh to make a **Canary Release** of the new microservice.
 
 This is what we want to achieve:
 
 ![App modernization with OpenShift Virt, Container Platform and Service Mesh](assets/app_mod.png)
+
+Disclaimer: The monolith isn't a real legacy app. But you could use exactly the same steps to modernize your big old Java application.
 
 ## Instructions
 
