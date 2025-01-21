@@ -6,6 +6,13 @@ This is what we want to achieve:
 
 ![App modernization with OpenShift Virt, Container Platform and Service Mesh](assets/app_mod.png)
 
+## Instructions
+
+You'll find instructions how to setup the infrastructure and how to run the lab here:
+
+* [Infrastructure prep guide](README_INFRA_PREPARE.md)
+* [Lab guide](README_LAB_INSTRUCTION.md)
+
 ## Develop
 
 Run in app folder:
