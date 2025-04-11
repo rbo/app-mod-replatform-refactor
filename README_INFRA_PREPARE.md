@@ -12,7 +12,7 @@ Install in order:
 Namespace: openshift-distributed-tracing
 * **Kiali**
 Namespace: openshift-operators
-* **Red Hat OpenShift Service Mesh**
+* **Red Hat OpenShift Service Mesh 2**
 Namespace: openshift-operators
 
 Then:
